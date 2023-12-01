@@ -6,27 +6,6 @@
 </head>
 <body>
     <h1>WeatherWise</h1>
-    <!-- <div>
-        <form method="POST">
-            {% csrf_token %}
-            <div> 
-                {{form.name}}
-            </div>
-            <div> 
-                <input type="submit" value="Add City">
-            </div>
-        </form>
-    </div> -->
-
-    <!-- {% for city_weather in weather_data %}
-    
-    <div >
-        <img src="https://api.openweathermap.org/img/w/{{city_weather.icon}}.png">
-        <p>{{ city_weather.city }}</p>
-        <p>{{ city_weather.temperature }} °C</p>
-        <p>{{ city_weather.description }}</p>
-    </div>
-    {% endfor %} -->
 
     <form method="get">
       {% csrf_token %}
@@ -34,16 +13,20 @@
       <input type="text" id="search" name="search" placeholder="Enter city name">
       <input type="submit" value="Search">
     </form>
-
+    {% for item in forecast_data_list %}
     <div class="weather-info">
-      <h1>Weather in {{ city }}</h1>
-      <p>Temperature: {{ temperature }} °C</p>
-      <p>Description: {{ description }}</p>
+      <h1>Weather in {{ item.city }}</h1>
+      <p>Date: {{item.forecast_date}}</p>
+      <p>Day: {{item.forecast_day}}</p>
+      <p>Temperature: {{ item.forecast_temperature }} °C</p>
+      <p>Probability of Rain: {{item.forecast_pop}}%</p>
+      <!-- <p>Description: {{ description }}</p> -->
       <!-- <p>Rainfall: {{ rain }}%</p> -->
-      <p>Wind Speed: {{ wind_speed }} m/s</p>
-      <p>Wind Direction: {{ wind_direction }}°</p>
-      <img src="https://openweathermap.org/img/w/{{ icon }}.png" alt="{{ description }}">
+      <p>Wind Speed: {{item.forecast_wind_speed}} m/s</p>
+      <p>Wind Direction: {{ item.converted_wind_direction }}</p>
+      <p>Humidity: {{item.forecast_humidity}}%</p>
+      <!-- <img src="https://openweathermap.org/img/w/{{ icon }}.png" alt="{{ description }}"> -->
     </div>
-    
+    {% endfor %}
 </body>
 </html>
