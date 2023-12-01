@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherWise</title>
+</head>
+<body>
+    <h1>WeatherWise</h1>
+    <!-- <div>
+        <form method="POST">
+            {% csrf_token %}
+            <div> 
+                {{form.name}}
+            </div>
+            <div> 
+                <input type="submit" value="Add City">
+            </div>
+        </form>
+    </div> -->
+
+    <!-- {% for city_weather in weather_data %}
+    
+    <div >
+        <img src="https://api.openweathermap.org/img/w/{{city_weather.icon}}.png">
+        <p>{{ city_weather.city }}</p>
+        <p>{{ city_weather.temperature }} °C</p>
+        <p>{{ city_weather.description }}</p>
+    </div>
+    {% endfor %} -->
+
+    <form method="get">
+      {% csrf_token %}
+      <label for="search">Search City:</label>
+      <input type="text" id="search" name="search" placeholder="Enter city name">
+      <input type="submit" value="Search">
+    </form>
+
+    <div class="weather-info">
+      <h1>Weather in {{ city }}</h1>
+      <p>Temperature: {{ temperature }} °C</p>
+      <p>Description: {{ description }}</p>
+      <!-- <p>Rainfall: {{ rain }}%</p> -->
+      <p>Wind Speed: {{ wind_speed }} m/s</p>
+      <p>Wind Direction: {{ wind_direction }}°</p>
+      <img src="https://openweathermap.org/img/w/{{ icon }}.png" alt="{{ description }}">
+    </div>
+    
+</body>
+</html>
