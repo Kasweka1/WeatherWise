@@ -1,32 +1,74 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WeatherWise</title>
-</head>
+  {% load static %}
 <body>
-    <h1>WeatherWise</h1>
+  <div class="site-content">
+    {% include 'main.html' %}
+    <div class="forecast-table">
+      <div class="container">
+        <div class="forecast-container">
+          <div class="today forecast">
 
-    <form method="get">
-      {% csrf_token %}
-      <label for="search">Search City:</label>
-      <input type="text" id="search" name="search" placeholder="Enter city name">
-      <input type="submit" value="Search">
-    </form>
-    {% for item in forecast_data_list %}
-    <div class="weather-info">
-      <h1>Weather in {{ item.city }}</h1>
-      <p>Date: {{item.forecast_date}}</p>
-      <p>Day: {{item.forecast_day}}</p>
-      <p>Temperature: {{ item.forecast_temperature }} °C</p>
-      <p>Probability of Rain: {{item.forecast_pop}}%</p>
-      <!-- <p>Description: {{ description }}</p> -->
-      <!-- <p>Rainfall: {{ rain }}%</p> -->
-      <p>Wind Speed: {{item.forecast_wind_speed}} m/s</p>
-      <p>Wind Direction: {{ item.converted_wind_direction }}</p>
-      <p>Humidity: {{item.forecast_humidity}}%</p>
-      <!-- <img src="https://openweathermap.org/img/w/{{ icon }}.png" alt="{{ description }}"> -->
+            <div class="forecast-header">
+              <div class="day">{{current_day_in_words}}</div>
+              <div class="date">{{date_str}}</div>
+            </div> <!-- .forecast-header -->
+            <div class="forecast-content">
+              <div class="location">{{city }}</div>
+              <div class="degree">
+                <div class="num">{{temp}}<sup>o</sup>C</div>
+                <div class="forecast-icon">
+                  <img src="{% static 'images/icons/icon-1.svg' %}" alt="" width=90>
+                </div>	
+              </div>
+              <span><img src="{% static 'images/icon-umberella.png'  %}" alt="">{{rain_prob}}%</span>
+              <span><img src="{% static 'images/icon-wind.png'  %}" alt="">{{wind_speed}}m/s</span>
+              <span><img src="{% static 'images/icon-compass.png'  %}" alt="">{{converted_current_wind_direction}}</span>
+            </div>
+          </div>
+          {% for item in forecast_data_list %} 
+          <div class="forecast">
+            <div class="forecast-header">
+              <div class="day">{{item.forecast_day}}</div>
+            </div> <!-- .forecast-header -->
+            <div class="forecast-content">
+              <div class="forecast-icon">
+                <img src="{% static 'images/icons/icon-3.svg' %}" alt="" width=48>
+              </div>
+              <div class="degree">{{ item.forecast_temperature }}<sup>o</sup>C</div>
+              <small>{{item.forecast_humidity}}%</small>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
-    {% endfor %}
+
+
+
+    <!-- <div class="container">
+      <div>
+        <h3>Weather in {{city }}</h3>
+        <p>Date: {{date_str}}</p>
+        <p>Current Day:{{current_day_in_words}}</p>
+        <p>Temperature: {{temp}}°C</p>
+        <p>Probability of Rain: {{rain_prob}}%</p>
+        <p>Wind Speed:{{wind_speed}}m/s</p>
+        <p>Wind Direction: {{converted_current_wind_direction}}</p>
+        <p>---------------------------------------</p>
+      </div>
+
+      {% for item in forecast_data_list %} 
+      <div class="weather-info">   
+        <p>Day: {{item.forecast_day}}</p>
+        <p>Temperature: {{ item.forecast_temperature }} °C</p>    
+        <p>Wind Direction: {{ item.converted_wind_direction }}</p>
+        <p>Humidity: {{item.forecast_humidity}}%</p>
+        <p>------------------------------</p>
+      </div>
+      {% endfor %}
+
+    </div> -->
+    
+  </div>  
 </body>
 </html>

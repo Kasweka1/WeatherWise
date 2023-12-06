@@ -1,12 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather Error</title>
-</head>
+
 <body>
-  <h1>Weather Error</h1>
-  <p>{{ error_message }}</p>
+
+  <div class="site-content">
+    {% include 'main.html' %}
+    <div class="forecast-table">
+      <div class="container">
+        <div class="forecast-container">
+          <div class="today forecast">
+
+
+            <div class="forecast-header">
+              <div class="day">Check City spelling</div>
+              <div class="date">{{date_str}}</div>
+            </div> <!-- .forecast-header -->
+            <div class="forecast-content">
+              <h3>{{ error_message }}</h3>
+              <p>Oh no! We couldn't find any city named "<strong>{{search_term}}</strong>" in our vast database of 
+                 cities around the world.</p>
+              <p>We apologize for any inconvenience this may cause. We've searched high and low, from the bustling metropolises to the quaintest villages, 
+                but "<strong>{{search_term}}</strong>" remains elusive. Perhaps it's a hidden city deep within an enchanted forest, or a secret metropolis concealed beneath the ocean waves. 
+                Whatever the case, it's clear that "{{search_term}}" is a place of mystery and intrigue.</p>
+              <p>
+                If you're certain that "<strong>{{search_term}}</strong>" exists, we encourage you to embark on a quest to uncover 
+                its whereabouts. Gather a team of intrepid explorers, equip yourselves with maps and compasses, and set off on a journey to the unknown. Who knows, 
+                you might just be the first to discover the fabled city of "<strong>{{search_term}}</strong>" and unravel its secrets.
+              </p>
+              <p>
+                In the meantime, we hope you'll continue to explore our world, discovering new and exciting places along the way. 
+                There are countless cities waiting to be explored, each with its own unique charm and character. 
+                So, pack your bags, grab your sense of adventure, and set off on a journey of discovery.
+              </p>
+              <p>Happy exploring!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </body>
 </html>
